@@ -4,10 +4,13 @@ import '../styles/global.css';
 export interface Props {
     title: string;
     description: string;
+    image?: string;
 }
 
-const { title, description } = Astro.props;
-const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://myst25.github.io');
+const { title, description, image = '/profile.jpg' } = Astro.props;
+const siteUrl = Astro.site || 'https://myst-25.github.io/blog/';
+const canonicalURL = new URL(Astro.url.pathname, siteUrl);
+const imageURL = new URL(image, siteUrl);
 ---
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
@@ -24,6 +27,13 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://myst25.g
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:type" content="website" />
+    <meta property="og:image" content={imageURL} />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={imageURL} />
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

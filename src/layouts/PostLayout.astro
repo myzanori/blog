@@ -7,7 +7,7 @@ const { title, description, pubDate, author, image, tags = [] } = Astro.props;
 const displayDate = new Date(pubDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 ---
 
-<Layout title={`${title} | Myst-Blog`} description={description}>
+<Layout title={`${title} | Myst-Blog`} description={description} image={image}>
     <main class="max-w-3xl mx-auto px-4 w-full pt-16">
         <article class="py-12">
             <header class="text-center mb-16">
