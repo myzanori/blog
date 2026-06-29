@@ -1,0 +1,20 @@
+---
+import { getCollection, render } from 'astro:content';
+import PostLayout from '../../layouts/PostLayout.astro';
+
+export async function getStaticPaths() {
+  const blogEntries = await getCollection('blog');
+  return blogEntries.map(entry => ({
+    // In Astro 5+, use entry.id instead of entry.slug
+    params: { slug: entry.id }, props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+// Astro 5+ requires the render() utility from astro:content
+const { Content } = await render(entry);
+---
+
+<PostLayout {...entry.data}>
+  <Content />
+</PostLayout>

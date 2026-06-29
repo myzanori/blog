@@ -1,0 +1,24 @@
+!---
+interface Props {
+    title: string;
+    description?: string;
+    image?: string;
+    
+}
+const {title, description = "A static blog site made for personal use!", 
+image = "/image/logo/jpg"} = Astro.props
+---
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="description" content={description} />
+        <meta name="viewport" content="width=device-width" />
+        <meta name="generator" content={Astro.generator} />
+        <meta property="og:image" content="image">
+        <title>Document</title>
+    </head>
+    <body class="min-h-screen">
+        
+    </body>
+</html>
